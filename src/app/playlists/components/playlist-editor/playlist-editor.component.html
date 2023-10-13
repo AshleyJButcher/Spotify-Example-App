@@ -1,0 +1,52 @@
+<form
+  #formRef="ngForm"
+  (ngSubmit)="submit(formRef)"
+  class="d-flex flex-column gap-3"
+  *ngIf="playlist"
+>
+  <app-card>
+    <pre>{{ playlist | json }}</pre>
+    <pre>{{ formRef.value | json }}</pre>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        #localHTMLInputRef
+        type="text"
+        class="form-control"
+        [ngModel]="playlist.name"
+        name="name"
+        #nameModelRef="ngModel"
+      />
+      <!-- (keydown)="counter = $event.target.value.length" -->
+
+      <div class="text-muted float-end">
+        {{ nameModelRef.value?.length }} / 100
+      </div>
+      <!-- <div class="text-muted float-end">{{ localHTMLInputRef.value.length }} / 100</div> -->
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input type="checkbox" [ngModel]="playlist.public" name="public" />
+        Public
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        [ngModel]="playlist.description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <div ngProjectAs="card-actions">
+      <button mat-raised-button color="warn" (click)="cancelClick()">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </div>
+  </app-card>
+</form>

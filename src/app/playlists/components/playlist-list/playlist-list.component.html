@@ -1,0 +1,34 @@
+<mat-selection-list
+  (selectionChange)="select($event.options[0].value)"
+  #listRef
+  [(ngModel)]="selectedIds"
+  [multiple]="false"
+  [hideSingleSelectionIndicator]="true"
+>
+  <mat-list-option
+    *ngFor="let playlist of playlists; index as i"
+    [value]="playlist.id"
+  >
+    {{ i + 1 }} {{ playlist.name }}
+  </mat-list-option>
+</mat-selection-list>
+
+<pre>{{ selectedIds | json }}</pre>
+
+<!-- 
+  <p>
+    Option selected: {{listRef.selectedOptions.hasValue() ? listRef.selectedOptions.selected[0].value.name : 'None'}}
+  </p>
+  <mat-list>
+    <mat-list-item
+      *ngFor="let playlist of playlists; index as i"
+      [class.active]="selectedId === playlist.id"
+      (click)="select(playlist.id)"
+    >
+      <div matListItemTitle>{{ i + 1 }}. {{ playlist.name }}</div>
+    </mat-list-item>
+  </mat-list> -->
+
+<!--  -->
+<!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.io/errors/NG01203 -->
+<!-- <div [ngModel]="selectedId"></div> -->

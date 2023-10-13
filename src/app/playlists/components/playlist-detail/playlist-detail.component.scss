@@ -1,0 +1,13 @@
+.isPublic,
+.isPrivate {
+  border-bottom: 1px solid currentColor;
+}
+
+::ng-deep .isPublic {
+  color: green !important;
+}
+
+.isPrivate {
+  color: red !important;
+}
+ 

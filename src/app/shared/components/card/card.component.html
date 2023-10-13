@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <ng-content select="mat-card-title" />
+
+    <!-- <mat-card-subtitle>Start</mat-card-subtitle> -->
+  </mat-card-header>
+
+  <mat-card-content>
+    <ng-content />
+  </mat-card-content>
+
+  <mat-card-actions>
+    <ng-content select="card-actions" />
+    <!-- <ng-content select="[mat-button],[mat-raised-button]" /> -->
+    <!-- <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button> -->
+  </mat-card-actions>
+</mat-card>
+
+<style>
+  ::ng-deep mat-card-header:has(> *:empty) {
+    display: none;
+  }
+</style>

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col">
+    <app-search-form [query]="queryChanges | async" (search)="searchAlbums($event)" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <!-- <div class="alert alert-danger my-2" *ngIf="message">{{ message }}</div> -->
+
+    <ng-container *ngIf="resultsChange | async as results">
+      Found {{results.length}} results:
+    </ng-container>
+
+
+    <ng-container *ngIf="resultsChange | async as results">
+      <app-albums-grid [albums]="results" />
+    </ng-container>
+
+  </div>
+</div>

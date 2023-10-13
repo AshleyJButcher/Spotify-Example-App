@@ -1,0 +1,34 @@
+<nav
+  class="navbar navbar-expand-sm bg-body-tertiary bg-dark border-bottom border-body mb-3"
+  data-bs-theme="dark"
+>
+  <div class="container">
+    <a class="navbar-brand" routerLinkActive="pancakes active " routerLink="/">MusicApp</a>
+    <button class="navbar-toggler" type="button" (click)="isOpen = !isOpen">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="isOpen"  >
+      <ul class="navbar-nav m-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="pancakes active " routerLink="/playlists">Playlists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="pancakes active " routerLink="/music/search">Search</a>
+        </li>
+      </ul>
+    </div>
+    <div class="ms-auto">
+      <div>
+        <button mat-button class="float-end" (click)="login()">Login</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <router-outlet />
+    </div>
+  </div>
+</div>

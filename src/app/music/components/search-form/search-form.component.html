@@ -1,0 +1,70 @@
+<form [formGroup]="searchForm" (submit)="submit()">
+  <div class="mb-2">
+    <mat-form-field class="w-100">
+      <mat-label>Search</mat-label>
+      <input matInput formControlName="query" #field="matInput" />
+      <!-- (keyup.enter)="submit()"  -->
+      <mat-hint *ngIf="searchForm.pending"> Pending ...</mat-hint>
+      <mat-error *ngIf="field.ngControl.hasError('required')"
+        >Field is required</mat-error
+      >
+      <mat-error
+        *ngIf="searchForm.get('query')?.getError('minlength') as error"
+      >
+        Minimal length is {{ error.requiredLength }}
+      </mat-error>
+      <mat-error
+        *ngIf="searchForm.get('query')?.getError('censor') as error"
+      >
+        Cannot contain "{{ error.badword }}"
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-fab class="float-end push-up" type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+    <span class="float-end" (click)="openAdvanced = !openAdvanced"
+      >Advanced</span
+    >
+  </div>
+
+  <!-- {{ searchForm.get('query')?.errors | json}} -->
+  <!-- {{ searchForm.get('query')?.dirty | json}} -->
+  <!-- {{ searchForm.get('query')?.touched | json}} -->
+
+  <div *ngIf="openAdvanced" formGroupName="advanced">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="album">Album</mat-option>
+        <mat-option value="artists">Artsits</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="d-flex flex-column gap-1" formArrayName="markets">
+      <div
+        class="w-100"
+        *ngFor="let item of markets.controls; index as i"
+        [formGroup]="item"
+      >
+        <mat-form-field>
+          <input type="text" matInput formControlName="code" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-fab class="float-left" type="button" (click)="addMarket()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <pre>{{ searchForm.value | json }}</pre>
+  </div>
+</form>
+
+<style>
+  .push-up {
+    margin-top: -3.5rem;
+    margin-right: 2rem;
+  }
+</style>

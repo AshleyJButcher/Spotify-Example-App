@@ -1,0 +1,21 @@
+
+
+::ng-deep mat-list-item.active {  
+   background: #3f51b5;
+  
+  .mdc-list-item__primary-text {
+    color: white;
+  }
+}
+
+// --mdc-protected-button-container-color: #3f51b5
+
+::ng-deep .mat-mdc-list-base.mat-mdc-list-base .mdc-list-item--selected .mdc-list-item__primary-text, 
+.mat-mdc-list-base.mat-mdc-list-base .mdc-list-item--activated .mdc-list-item__primary-text {
+  color: #fff;
+}
+
+.mdc-list-item.mdc-list-item--selected {
+  background-color: #3f51b5;
+  // background-color: var(--mdc-list-list-item-selected-container-color);
+}
